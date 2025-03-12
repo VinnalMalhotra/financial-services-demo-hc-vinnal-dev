@@ -391,11 +391,12 @@ const Professional: Template<TemplateRenderProps> = ({
         />
       </section>
 
-      <ThreeGridLayout
-        titleAlignment="center"
-        title={`My Locations`}
-        relatedItems={professionalLocations}
-      />
+{professionalLocations &&
+    <ThreeGridLayout
+      titleAlignment="center"
+      title={`My Locations`}
+      relatedItems={professionalLocations}
+    />}
       <ScrollToTop />
     </PageLayout>
   );

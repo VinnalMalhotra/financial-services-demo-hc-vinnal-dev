@@ -50,7 +50,7 @@ export const config: TemplateConfig = {
     ],
     filter: {
       entityTypes: ["ce_blog", "product"],
-      savedFilterIds: ["1396278582"],
+      savedFilterIds: ["1401364440"],
     },
     localization: {
       locales: ["en"],
