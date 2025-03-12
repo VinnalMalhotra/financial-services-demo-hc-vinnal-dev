@@ -64,7 +64,7 @@ const ThreeGridLayout = ({
 {(item.primaryPhoto || item.photoGallery?.[0]) && (
   <Image
     image={item.primaryPhoto || item.photoGallery?.[0] as ComplexImage}
-    className="w-full max-w-none !h-[187px]"
+    className="w-full max-w-none !"
   />
 )}
 
