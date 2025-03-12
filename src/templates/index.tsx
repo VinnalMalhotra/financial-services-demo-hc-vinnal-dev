@@ -55,7 +55,7 @@ export const getHeadConfig: GetHeadConfig<
   TemplateRenderProps
 > = (): HeadConfig => {
   return {
-    title: "FINS | Homepage",
+    title: "Healthcare | Homepage",
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -125,7 +125,7 @@ const Homepage: Template<TemplateRenderProps> = ({ document }) => {
         >
           <section className="h-full w-full md:w-full lg:w-1/3 m-auto gap-4 md:gap-8 flex flex-col justify-center items-center px-8 lg:px-0">
             <h2 className="text-xl md:text-4xl font-medium text-primary">
-              Start your Financial Journey Today
+            Having a question about healthcare
             </h2>
 
             <SearchBar
