@@ -363,12 +363,13 @@ const Professional: Template<TemplateRenderProps> = ({
         </section>
       </section>
       <section className="bg-accent">
-        <ThreeGridLayout
+{   c_relatedProducts &&
+     <ThreeGridLayout
           titleAlignment="center"
           title={`Speciality`}
           relatedItems={c_relatedProducts}
           ctaCount={1}
-        />
+        />}
       </section>
       <section className="centered-container md:space-y-16">
         <header className=" space-y-2 text-center">
@@ -384,11 +385,12 @@ const Professional: Template<TemplateRenderProps> = ({
         <ReviewsComponent />
       </section>
       <section className="bg-accent">
+{c_relatedBlogs &&
         <Blogs
           linkedArticles={c_relatedBlogs}
           parentEntityName={name}
           title={"Insights"}
-        />
+        />}
       </section>
 
 {professionalLocations &&
