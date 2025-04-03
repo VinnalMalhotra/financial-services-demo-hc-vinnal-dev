@@ -41,6 +41,15 @@ interface relatedProductsProps {
   type?: string;
 }
 
+interface InsuranceProvider {
+  insuranceName: string;
+  insurancePhoto?: ComplexImage;
+}
+
+interface InsuranceListProps {
+  c_insuranceProviders: InsuranceProvider[];
+}
+
 const ThreeGridLayout = ({
   relatedItems,
   title,

@@ -13,11 +13,12 @@ const BlogCard = ({ result }: CardProps<any>) => {
     landingPageUrl,
     primaryPhoto,
     c_secondaryCTA,
+    richTextDescriptionV2,
     slug,
   } = result.rawData;
 
   return (
-    <article id={`${id}`} className={`  group border rounded-lg `}>
+    <article id={`${id}`} className={`  group border rounded-lg flex flex-col h-full `}>
       <header className={`relative flex flex-col justify-between`}>
         <a
           href={landingPageUrl}
@@ -31,13 +32,15 @@ const BlogCard = ({ result }: CardProps<any>) => {
           <a href={landingPageUrl}>{name}</a>
         </h2>
       </header>
-      {shortDescriptionV2 && (
-        <div className="px-4" aria-label="Answers Container">
-          <ResponseComponent response={shortDescriptionV2} />{" "}
+
+      {(richTextDescriptionV2 || shortDescriptionV2) && (
+        <div className="px-4 flex-grow" aria-label="Answers Container">
+          <ResponseComponent response={richTextDescriptionV2 || shortDescriptionV2} />{" "}
         </div>
       )}
 
-      <section className={`px-4 space-y-1 `}>
+
+      <section className={`px-4 space-y-1 mt-auto `}>
         {(c_primaryCTA || c_secondaryCTA) && (
           <footer
             className={`flex gap-2 justify-center pt-4 pb-2 items-center flex-col md:flex-row`}
