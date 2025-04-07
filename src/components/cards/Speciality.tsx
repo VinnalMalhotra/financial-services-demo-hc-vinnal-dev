@@ -3,7 +3,7 @@ import Cta from "../cta";
 import ResponseComponent from "../ResponseComponent";
 import ImageFormatter from "../ImageFormatter";
 
-const BlogCard = ({ result }: CardProps<any>) => {
+const Speciality = ({ result }: CardProps<any>) => {
   const {
     id,
     price,
@@ -33,9 +33,9 @@ const BlogCard = ({ result }: CardProps<any>) => {
         </h2>
       </header>
 
-      {(shortDescriptionV2) && (
-        <div className="px-4 flex-grow" aria-label="Answers Container">
-          <ResponseComponent response={shortDescriptionV2} />{" "}
+      {richTextDescriptionV2 && (
+        <div className="px-4" aria-label="Answers Container">
+          <ResponseComponent response={richTextDescriptionV2} showMore={true} />{" "}
         </div>
       )}
 
@@ -59,4 +59,4 @@ const BlogCard = ({ result }: CardProps<any>) => {
   );
 };
 
-export default BlogCard;
+export default Speciality;

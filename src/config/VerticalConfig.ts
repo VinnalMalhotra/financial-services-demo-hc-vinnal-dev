@@ -12,6 +12,7 @@ import ProfessionalStandard from "../components/cards/ProfessionalStandard";
 import ProductProminentImage from "../components/cards/ProductProminentImage";
 import BlogCard from "../components/cards/BlogCard";
 import { UniversalSection } from "../components/search/UniversalSection";
+import Speciality from "../components/cards/Speciality";
 export interface GlobalConfigProps {
   accountEnv: "Production" | "Sandbox";
   searchExperienceVersion: "Production" | "Staging";
@@ -72,7 +73,7 @@ export const VerticalConfig: VerticalProps[] = [
     label: "Specialty",
     verticalKey: "specialty",
     pageType: "grid-cols-3",
-    cardType: BlogCard,
+    cardType: Speciality,
     universalLimit: 3,
   },
   {
