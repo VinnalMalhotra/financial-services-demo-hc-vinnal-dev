@@ -94,7 +94,7 @@ export const getHeadConfig: GetHeadConfig<
     TemplateRenderProps
 > = (): HeadConfig => {
     return {
-        title: "HC | Specialty Page",
+        title: "HC | Condition Page",
         charset: "UTF-8",
         viewport: "width=device-width, initial-scale=1",
         tags: [
@@ -168,8 +168,8 @@ const Condition: Template<TemplateRenderProps> = ({ document }) => {
             {/*About Section */}
             <section className="centered-container !py-8 hidden md:block">
                 <section className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                    <article className="flex flex-col w-full md:w-1/2 gap-6 self-start">
-                        <h2 className="text-2xl md:text-4xl font-bold py-16">About {name}</h2>
+                    <article className="flex flex-col w-full md:w-1/2 gap-6 self-start py-24">
+                        <h2 className="text-2xl md:text-4xl font-bold">About {name}</h2>
                         <div className="mt-4 space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row w-full">
                             <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-auto p-3 px-6 flex items-center justify-center border rounded-full">
                                 Schedule Appointment
