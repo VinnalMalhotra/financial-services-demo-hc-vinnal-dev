@@ -39,7 +39,7 @@ export const config: TemplateConfig = {
       "c_relatedBlogs.slug",
     ],
     filter: {
-      entityIds: ["veridian-home"],
+      entityIds: ["healthcare-home"],
     },
     localization: {
       locales: ["en"],
