@@ -112,6 +112,8 @@ export const config: TemplateConfig = {
       "c_relatedLocations.yextDisplayCoordinate",
       "c_relatedLocations.meta", "c_relatedLocations.photoGallery",
       "closed",
+      "c_insuranceProviders.insuranceName",
+      "c_insuranceProviders.insurancePhoto",
     ],
     filter: {
       entityTypes: ["healthcareFacility"],
@@ -218,8 +220,8 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
     }
   }, [c_relatedProfessionals]);
 
-  
-  
+
+
 
 
   return (
@@ -437,6 +439,36 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
         </section>
       )}
 
+{/* Insurance Accepted Code */}
+      {document.c_insuranceProviders && (
+        <section className="centered-container py-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">
+            Accepted Insurance Providers
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+            {document.c_insuranceProviders.map((provider: any, index: number) => (
+              <div key={index} className="flex flex-col items-center text-center">
+                {provider.insurancePhoto && (
+                  <a
+                    href="https://www.yext.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={provider.insurancePhoto.url}
+                      alt={provider.insuranceName}
+                      className="w-24 h-24 object-contain mb-2 hover:opacity-80 transition"
+                    />
+                  </a>
+                )}
+                <p className="text-base font-medium">{provider.insuranceName}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+
       {/* Featured Promo Section */}
       {c_relatedPromo && <section className="centered-container">
         <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
@@ -493,6 +525,7 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
         title={`My Locations`}
         relatedItems={professionalLocations}
       />}
+
 
       <ScrollToTop />
     </PageLayout>
