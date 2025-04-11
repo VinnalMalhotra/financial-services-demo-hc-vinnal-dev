@@ -93,6 +93,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents_hc_hf_directory.id",
       "dm_directoryParents_hc_hf_directory.c_addressRegionAbbreviation",
       "photoGallery",
+      "primaryPhoto",
       "timezone",
       "c_relatedProducts.id",
       "c_relatedProducts.c_shortDescriptionV2",
@@ -103,18 +104,13 @@ export const config: TemplateConfig = {
       "c_relatedPromo.name",
       "c_relatedPromo.c_backgroundImage",
       "c_relatedPromo.description",
-      "c_relatedEvents.id",
-      "c_relatedEvents.name",
-      "c_relatedEvents.time",
-      "c_relatedEvents.photoGallery",
-      "c_relatedEvents.description",
       "c_relatedLocations.name",
       "c_relatedLocations.slug",
       "c_relatedLocations.address",
       "c_relatedLocations.mainPhone",
       "c_relatedLocations.hours",
       "c_relatedLocations.yextDisplayCoordinate",
-      "c_relatedLocations.meta",
+      "c_relatedLocations.meta", "c_relatedLocations.photoGallery",
       "closed",
     ],
     filter: {
@@ -133,9 +129,8 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug
     ? document.slug
-    : `${document.locale}/${document.address.region}/${document.address.city}/${
-        document.address.line1
-      }-${document.id.toString()}`;
+    : `${document.locale}/${document.address.region}/${document.address.city}/${document.address.line1
+    }-${document.id.toString()}`;
 };
 
 /**
@@ -213,6 +208,7 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const email =
     (emails && emails.length >= 1 && emails[0]) || `contact@contact.com`;
+
   useEffect(() => {
     if (c_relatedProfessionals?.length) {
       const relatedBlogs = c_relatedProfessionals.flatMap(
@@ -221,6 +217,10 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
       setRelatedBlogs(getRandomObjects(relatedBlogs));
     }
   }, [c_relatedProfessionals]);
+
+  
+  
+
 
   return (
     <PageLayout _site={_site} templateData={{ __meta, document }}>
@@ -235,7 +235,7 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
           </article>
         </section>
       )}
-      <AnnouncementBanner isVisibleByDefault={true} position="left"/>
+      <AnnouncementBanner isVisibleByDefault={true} position="left" />
       <article className="centered-container !py-4 hidden md:block">
         <BreadCrumbs
           data={dm_directoryParents_hc_hf_directory}
@@ -278,7 +278,7 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
             </button>
           </nav>
         </article>
-        <Image image={photoGallery[0]} className="w-full md:!w-1/2 max-w-none" />
+        {photoGallery && <Image image={photoGallery[0]} className="w-full md:!w-1/2 max-w-none" />}
 
 
       </section>
@@ -358,10 +358,10 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
       {/* About Section */}
       <section className="centered-container">
         <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-8 md:gap-16">
-          <Image
+          {photoGallery && <Image
             image={photoGallery[0]}
             className="w-full md:!w-1/2 max-w-none"
-          />
+          />}
           <article className="flex flex-col w-full md:w-1/2 gap-8">
             <h2 className="text-2xl md:text-4xl font-bold">
               About {name} - {address.line1}
@@ -379,8 +379,8 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
         </section>
       </section>
 
-            {/* Featured Products */}
-            {c_relatedProducts && (
+      {/* Featured Products */}
+      {c_relatedProducts && (
         <section className="bg-accent">
           <ThreeGridLayout
             title={`Speciality at ${address.line1}`}
@@ -438,14 +438,14 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
       )}
 
       {/* Featured Promo Section */}
-      <section className="centered-container">
+      {c_relatedPromo && <section className="centered-container">
         <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
-        {c_relatedPromo?.length > 0 && (
-  <Image
-    image={c_relatedPromo[0]?.c_backgroundImage}
-    className="w-full md:!w-1/2 max-w-none"
-  />
-)}
+          {c_relatedPromo?.length > 0 && (
+            <Image
+              image={c_relatedPromo[0]?.c_backgroundImage}
+              className="w-full md:!w-1/2 max-w-none"
+            />
+          )}
 
           <article className="flex flex-col w-full md:w-1/2 gap-8">
             <h2 className="text-2xl md:text-4xl font-bold">
@@ -472,27 +472,27 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
           </article>
         </section>
       </section>
+      }
 
-
-      {c_relatedEvents && (
+      {/* {c_relatedEvents && (
         <ThreeGridLayout
           title="Upcoming Events"
           relatedItems={c_relatedEvents}
           titleAlignment="center"
           type="Event"
         />
-      )}
+      )} */}
       <article className="centered-container !py-8 block md:hidden border-t">
         <BreadCrumbs
           data={dm_directoryParents_hc_hf_directory}
           currAddress={address.line1}
         />
       </article>
-      <ThreeGridLayout
-        titleAlignment="center"
+      {professionalLocations && <ThreeGridLayout
+        titleAlignment="center" type="locations"
         title={`My Locations`}
         relatedItems={professionalLocations}
-      />
+      />}
 
       <ScrollToTop />
     </PageLayout>

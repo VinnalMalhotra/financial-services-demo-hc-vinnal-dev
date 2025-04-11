@@ -19,7 +19,7 @@ interface relatedProductProps {
   id: string;
   name: string;
   primaryPhoto?: ComplexImage;
-  photoGallery?: PhotoGallery;
+  photoGallery?: ComplexImage[];
   slug: string;
   description: string;
   time: Time;
@@ -70,12 +70,12 @@ const ThreeGridLayout = ({
             className="flex flex-col justify-between bg-primary border"
             key={index}
           >
-{(item.primaryPhoto || item.photoGallery?.[0]) && (
-  <Image
-    image={item.primaryPhoto || item.photoGallery?.[0] as ComplexImage}
-    className="w-full max-w-none !"
-  />
-)}
+            {(type !== "locations") && ((item.primaryPhoto || (item.photoGallery && item.photoGallery[0])) && (
+              <Image
+                image={item.primaryPhoto || item.photoGallery?.[0] as ComplexImage}
+                className="w-full max-w-none !"
+              />
+            ))}
 
             <article className="p-8 flex flex-col w-full gap-8">
               <article className="flex flex-col w-full gap-3 md:gap-4">
@@ -115,18 +115,18 @@ const ThreeGridLayout = ({
                 {ctaCount >= 2 ? (
                   type === "location" ? (
                     <nav className="flex gap-2">
-{item.yextDisplayCoordinate && (
-  <Cta
-    otherStyles="md:w-36"
-    cta={{
-      label: "Get Directions",
-      link: getGoogleMapsLink(item.yextDisplayCoordinate),
-      linkType: "URL",
-    }}
-    ctaType="secondaryCta"
-    aria-label="Secondary call to action"
-  />
-)}
+                      {item.yextDisplayCoordinate && (
+                        <Cta
+                          otherStyles="md:w-36"
+                          cta={{
+                            label: "Get Directions",
+                            link: getGoogleMapsLink(item.yextDisplayCoordinate),
+                            linkType: "URL",
+                          }}
+                          ctaType="secondaryCta"
+                          aria-label="Secondary call to action"
+                        />
+                      )}
                       {item?.meta?.entityType?.id !== "atm" && (
                         <Cta
                           cta={{

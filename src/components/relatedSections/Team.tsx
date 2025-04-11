@@ -42,11 +42,11 @@ const Team = ({
             className="flex flex-col items-center rounded-lg bg-primary shadow-[0px_2px_8px_0px_rgba(0,0,0,0.15)]"
           >
             <article className="mx-auto p-6 md:p-8 flex gap-4 items-center">
-              <Image
+              {person.headshot && <Image
                 loading="lazy"
                 image={person.headshot}
                 className="rounded-full !w-20 !h-20 max-w-none"
-              />
+              />}
               <a href={`/${person.slug}`} className="focus:outline-none">
                 <span aria-hidden="true" className=" inset-0" />
                 <p className="text-xl md:text-2xl font-medium">{person.name}</p>
